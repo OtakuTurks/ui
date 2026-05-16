@@ -101,8 +101,8 @@ const progressValue = ref(65)
     <aside class="sidebar">
       <div class="sidebar__header">
         <h1 class="sidebar__brand">
-          <span class="sidebar__brand-icon">◆</span>
-          Otakuturks UI
+          <OtAvatar src="https://thumbs2.imgbox.com/f8/9e/ccoQ0QLW_t.jpeg" name="User One" size="md" /> 
+          OtakuTurks UI
         </h1>
         <button class="sidebar__search" @click="searchModalOpen = true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
