@@ -24,6 +24,18 @@ export default defineConfig(({ mode }) => {
     }
   }
   
+  if (mode === 'storybook') {
+    return {
+      plugins: [vue()],
+      root: 'storybook',
+      resolve: {
+        alias: {
+          './components': resolve(__dirname, 'src/components'),
+        },
+      },
+    }
+  }
+  
   return {
     plugins: [vue()],
   }

@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "dev": "vite",
+    "storybook": "vite --mode storybook",
     "build": "vite build && vite build --mode lib",
     "build:lib": "vite build --mode lib",
     "preview": "vite preview"
