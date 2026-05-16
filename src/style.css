@@ -1,0 +1,12 @@
+/* @otakuturks/ui - Base Styles */
+
+:root {
+  --ot-primary: #42b883;
+  --ot-primary-hover: #35a070;
+  --ot-secondary: #f1f1f1;
+  --ot-secondary-hover: #e0e0e0;
+  --ot-text: #333;
+  --ot-text-light: #666;
+  --ot-border-radius: 6px;
+  --ot-transition: 0.2s ease;
+}
