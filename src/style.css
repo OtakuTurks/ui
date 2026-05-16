@@ -1,12 +1,124 @@
-/* @otakuturks/ui - Base Styles */
+/* @otakuturks/ui - Design System */
 
+/* Vimox Design Theme */
 :root {
-  --ot-primary: #42b883;
-  --ot-primary-hover: #35a070;
-  --ot-secondary: #f1f1f1;
-  --ot-secondary-hover: #e0e0e0;
-  --ot-text: #333;
-  --ot-text-light: #666;
-  --ot-border-radius: 6px;
-  --ot-transition: 0.2s ease;
+  /* Colors */
+  --ot-primary: #377DFF;
+  --ot-primary-hover: #2968E6;
+  --ot-danger: #FF715B;
+  --ot-danger-hover: #FF5A42;
+  --ot-warning: #FFBE3D;
+  --ot-warning-hover: #FFB324;
+  --ot-success: #2DCA8C;
+  --ot-success-hover: #26B87A;
+  --ot-white: #FFFFFF;
+  
+  /* Gray Scale */
+  --ot-gray-100: #AAB0B7;
+  --ot-gray-200: #858A8F;
+  --ot-gray-300: #2A2C34;
+  --ot-gray-400: #1E2029;
+  --ot-gray-500: #12141D;
+  
+  /* Background */
+  --ot-bg-primary: #12141D;
+  --ot-bg-secondary: #1E2029;
+  --ot-bg-tertiary: #2A2C34;
+  
+  /* Border Radius */
+  --ot-radius-sm: 4px;
+  --ot-radius-base: 8.7px;
+  --ot-radius-lg: 12px;
+  --ot-radius-xl: 16px;
+  --ot-radius-full: 999px;
+  
+  /* Typography */
+  --ot-font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  --ot-font-xs: 0.75rem;
+  --ot-font-sm: 0.875rem;
+  --ot-font-base: 1rem;
+  --ot-font-lg: 1.25rem;
+  --ot-font-xl: 1.5rem;
+  --ot-font-2xl: 1.875rem;
+  --ot-font-3xl: 2.375rem;
+  
+  --ot-line-height: 1.5;
+  
+  /* Spacing */
+  --ot-spacing-xs: 4px;
+  --ot-spacing-sm: 8px;
+  --ot-spacing-md: 16px;
+  --ot-spacing-lg: 24px;
+  --ot-spacing-xl: 32px;
+  --ot-spacing-2xl: 48px;
+  
+  /* Transitions */
+  --ot-transition-fast: 150ms;
+  --ot-transition-base: 250ms;
+  --ot-transition-slow: 350ms;
+  
+  /* Shadows */
+  --ot-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ot-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --ot-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
+  
+  /* Z-Index */
+  --ot-z-dropdown: 100;
+  --ot-z-sticky: 200;
+  --ot-z-fixed: 300;
+  --ot-z-modal-backdrop: 400;
+  --ot-z-modal: 500;
+  --ot-z-popover: 600;
+  --ot-z-tooltip: 700;
+}
+
+/* Dark Theme (Default) */
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Styles */
+body {
+  font-family: var(--ot-font-family);
+  font-size: var(--ot-font-base);
+  line-height: var(--ot-line-height);
+  color: var(--ot-gray-200);
+  background-color: var(--ot-bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid var(--ot-primary);
+  outline-offset: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ot-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ot-gray-300);
+  border-radius: var(--ot-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ot-gray-400);
 }
