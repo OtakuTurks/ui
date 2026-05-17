@@ -39,13 +39,16 @@ const handleEscape = (event) => {
   }
 }
 
-watch(() => props.isOpen, (newValue) => {
-  if (newValue) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = ''
+watch(
+  () => props.isOpen,
+  (newValue) => {
+    if (newValue) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
   }
-})
+)
 
 onMounted(() => {
   document.addEventListener('keydown', handleEscape)
@@ -64,7 +67,9 @@ onBeforeUnmount(() => {
         <div class="ot-modal" :class="`ot-modal--${size}`">
           <button class="ot-modal__close" @click="close" aria-label="Close modal">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              />
             </svg>
           </button>
           <div class="ot-modal__content">
@@ -151,7 +156,9 @@ onBeforeUnmount(() => {
   cursor: pointer;
   padding: var(--ot-spacing-xs);
   border-radius: var(--ot-radius-sm);
-  transition: color var(--ot-transition-fast), background-color var(--ot-transition-fast);
+  transition:
+    color var(--ot-transition-fast),
+    background-color var(--ot-transition-fast);
   z-index: 1;
 }
 
@@ -178,7 +185,9 @@ onBeforeUnmount(() => {
 
 .ot-modal-enter-active .ot-modal,
 .ot-modal-leave-active .ot-modal {
-  transition: transform var(--ot-transition-base), opacity var(--ot-transition-base);
+  transition:
+    transform var(--ot-transition-base),
+    opacity var(--ot-transition-base);
 }
 
 .ot-modal-enter-from .ot-modal,

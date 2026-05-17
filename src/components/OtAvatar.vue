@@ -64,11 +64,7 @@ const style = computed(() => ({
 </script>
 
 <template>
-  <div
-    class="ot-avatar"
-    :style="style"
-    @click="$emit('click')"
-  >
+  <div class="ot-avatar" :style="style" @click="$emit('click')">
     <img
       v-if="src"
       :src="src"

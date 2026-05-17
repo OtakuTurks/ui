@@ -3,38 +3,38 @@
 /* Vimox Design Theme */
 :root {
   /* Colors */
-  --ot-primary: #377DFF;
-  --ot-primary-hover: #2968E6;
-  --ot-danger: #FF715B;
-  --ot-danger-hover: #FF5A42;
-  --ot-warning: #FFBE3D;
-  --ot-warning-hover: #FFB324;
-  --ot-success: #2DCA8C;
-  --ot-success-hover: #26B87A;
-  --ot-white: #FFFFFF;
-  
+  --ot-primary: #377dff;
+  --ot-primary-hover: #2968e6;
+  --ot-danger: #ff715b;
+  --ot-danger-hover: #ff5a42;
+  --ot-warning: #ffbe3d;
+  --ot-warning-hover: #ffb324;
+  --ot-success: #2dca8c;
+  --ot-success-hover: #26b87a;
+  --ot-white: #ffffff;
+
   /* Gray Scale */
-  --ot-gray-100: #AAB0B7;
-  --ot-gray-200: #858A8F;
-  --ot-gray-300: #2A2C34;
-  --ot-gray-400: #1E2029;
-  --ot-gray-500: #12141D;
-  
+  --ot-gray-100: #aab0b7;
+  --ot-gray-200: #858a8f;
+  --ot-gray-300: #2a2c34;
+  --ot-gray-400: #1e2029;
+  --ot-gray-500: #12141d;
+
   /* Background */
-  --ot-bg-primary: #12141D;
-  --ot-bg-secondary: #1E2029;
-  --ot-bg-tertiary: #2A2C34;
-  
+  --ot-bg-primary: #12141d;
+  --ot-bg-secondary: #1e2029;
+  --ot-bg-tertiary: #2a2c34;
+
   /* Border Radius */
   --ot-radius-sm: 4px;
   --ot-radius-base: 8.7px;
   --ot-radius-lg: 12px;
   --ot-radius-xl: 16px;
   --ot-radius-full: 999px;
-  
+
   /* Typography */
   --ot-font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  
+
   --ot-font-xs: 0.75rem;
   --ot-font-sm: 0.875rem;
   --ot-font-base: 1rem;
@@ -42,9 +42,9 @@
   --ot-font-xl: 1.5rem;
   --ot-font-2xl: 1.875rem;
   --ot-font-3xl: 2.375rem;
-  
+
   --ot-line-height: 1.5;
-  
+
   /* Spacing */
   --ot-spacing-xs: 4px;
   --ot-spacing-sm: 8px;
@@ -52,17 +52,17 @@
   --ot-spacing-lg: 24px;
   --ot-spacing-xl: 32px;
   --ot-spacing-2xl: 48px;
-  
+
   /* Transitions */
   --ot-transition-fast: 150ms;
   --ot-transition-base: 250ms;
   --ot-transition-slow: 350ms;
-  
+
   /* Shadows */
   --ot-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --ot-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.4);
   --ot-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
-  
+
   /* Z-Index */
   --ot-z-dropdown: 100;
   --ot-z-sticky: 200;
@@ -74,7 +74,7 @@
 }
 
 /* Dark Theme (Default) */
-[data-theme="dark"] {
+[data-theme='dark'] {
   color-scheme: dark;
 }
 

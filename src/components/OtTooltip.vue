@@ -44,12 +44,7 @@ const hide = () => {
   >
     <slot />
     <Transition name="ot-tooltip">
-      <div
-        v-if="visible"
-        class="ot-tooltip"
-        :class="`ot-tooltip--${position}`"
-        role="tooltip"
-      >
+      <div v-if="visible" class="ot-tooltip" :class="`ot-tooltip--${position}`" role="tooltip">
         {{ content }}
         <div class="ot-tooltip__arrow"></div>
       </div>
@@ -139,7 +134,9 @@ const hide = () => {
 /* Transitions */
 .ot-tooltip-enter-active,
 .ot-tooltip-leave-active {
-  transition: opacity var(--ot-transition-fast), transform var(--ot-transition-fast);
+  transition:
+    opacity var(--ot-transition-fast),
+    transform var(--ot-transition-fast);
 }
 
 .ot-tooltip-enter-from,

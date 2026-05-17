@@ -24,8 +24,12 @@ const props = defineProps({
 
 const style = computed(() => {
   const width = typeof props.width === 'number' ? `${props.width}px` : props.width
-  const height = props.height ? (typeof props.height === 'number' ? `${props.height}px` : props.height) : null
-  
+  const height = props.height
+    ? typeof props.height === 'number'
+      ? `${props.height}px`
+      : props.height
+    : null
+
   return {
     width,
     height: height || (props.variant === 'text' ? undefined : height)
@@ -36,10 +40,7 @@ const style = computed(() => {
 <template>
   <div
     class="ot-skeleton"
-    :class="[
-      `ot-skeleton--${variant}`,
-      `ot-skeleton--${animation}`
-    ]"
+    :class="[`ot-skeleton--${variant}`, `ot-skeleton--${animation}`]"
     :style="style"
   />
 </template>
@@ -56,7 +57,7 @@ const style = computed(() => {
   margin-top: 0;
   margin-bottom: 0;
   border-radius: var(--ot-radius-sm);
-  transform: scale(1, 0.60);
+  transform: scale(1, 0.6);
   transform-origin: center;
 }
 

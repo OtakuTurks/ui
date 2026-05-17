@@ -27,10 +27,7 @@ const paddingMap = {
 <template>
   <div
     class="ot-card"
-    :class="[
-      `ot-card--${variant}`,
-      { 'ot-card--hoverable': hoverable }
-    ]"
+    :class="[`ot-card--${variant}`, { 'ot-card--hoverable': hoverable }]"
     :style="{ padding: paddingMap[padding] }"
   >
     <slot />

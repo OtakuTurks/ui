@@ -46,7 +46,7 @@ const components = [
 
 const groupedComponents = computed(() => {
   const groups = {}
-  components.forEach(comp => {
+  components.forEach((comp) => {
     if (!groups[comp.category]) {
       groups[comp.category] = []
     }
@@ -101,24 +101,26 @@ const progressValue = ref(65)
     <aside class="sidebar">
       <div class="sidebar__header">
         <h1 class="sidebar__brand">
-          <OtAvatar src="https://thumbs2.imgbox.com/f8/9e/ccoQ0QLW_t.jpeg" name="User One" size="md" /> 
+          <OtAvatar
+            src="https://thumbs2.imgbox.com/f8/9e/ccoQ0QLW_t.jpeg"
+            name="User One"
+            size="md"
+          />
           OtakuTurks UI
         </h1>
         <button class="sidebar__search" @click="searchModalOpen = true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            <path
+              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+            />
           </svg>
           <span>Search</span>
           <kbd>Ctrl K</kbd>
         </button>
       </div>
-      
+
       <nav class="sidebar__nav">
-        <div
-          v-for="(comps, category) in groupedComponents"
-          :key="category"
-          class="sidebar__group"
-        >
+        <div v-for="(comps, category) in groupedComponents" :key="category" class="sidebar__group">
           <div class="sidebar__category">{{ category }}</div>
           <button
             v-for="comp in comps"
@@ -138,7 +140,7 @@ const progressValue = ref(65)
       <header class="main__header">
         <h2 class="main__title">{{ selectedComponent }}</h2>
       </header>
-      
+
       <div class="main__content">
         <!-- OtButton Preview -->
         <div v-if="selectedComponent === 'OtButton'" class="preview">
@@ -152,7 +154,7 @@ const progressValue = ref(65)
               <OtButton variant="success">Success</OtButton>
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Sizes</h3>
             <div class="preview__row">
@@ -161,7 +163,7 @@ const progressValue = ref(65)
               <OtButton size="lg">Large</OtButton>
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">States</h3>
             <div class="preview__row">
@@ -182,7 +184,7 @@ const progressValue = ref(65)
               <OtInput type="email" placeholder="Email input" />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Sizes</h3>
             <div class="preview__col">
@@ -191,7 +193,7 @@ const progressValue = ref(65)
               <OtInput size="lg" placeholder="Large" />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">States</h3>
             <div class="preview__col">
@@ -208,10 +210,14 @@ const progressValue = ref(65)
           <section class="preview__section">
             <h3 class="preview__subtitle">Default</h3>
             <div class="preview__row">
-              <OtDropdown v-model="dropdownModel" :options="dropdownOptions" placeholder="Select option" />
+              <OtDropdown
+                v-model="dropdownModel"
+                :options="dropdownOptions"
+                placeholder="Select option"
+              />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Sizes</h3>
             <div class="preview__row">
@@ -220,7 +226,7 @@ const progressValue = ref(65)
               <OtDropdown size="lg" :options="dropdownOptions" placeholder="Large" />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">States</h3>
             <div class="preview__row">
@@ -238,38 +244,50 @@ const progressValue = ref(65)
             <div class="preview__row">
               <OtIconButton variant="primary" aria-label="Primary">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  />
                 </svg>
               </OtIconButton>
               <OtIconButton variant="secondary" aria-label="Secondary">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  />
                 </svg>
               </OtIconButton>
               <OtIconButton variant="danger" aria-label="Danger">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  />
                 </svg>
               </OtIconButton>
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Sizes</h3>
             <div class="preview__row">
               <OtIconButton size="sm" aria-label="Small">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  />
                 </svg>
               </OtIconButton>
               <OtIconButton size="md" aria-label="Medium">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  />
                 </svg>
               </OtIconButton>
               <OtIconButton size="lg" aria-label="Large">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  />
                 </svg>
               </OtIconButton>
             </div>
@@ -286,7 +304,7 @@ const progressValue = ref(65)
               <OtAvatar src="https://i.pravatar.cc/150?img=3" name="User Three" />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">With Initials</h3>
             <div class="preview__row">
@@ -296,7 +314,7 @@ const progressValue = ref(65)
               <OtAvatar name="Alice" color="warning" />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Sizes</h3>
             <div class="preview__row">
@@ -322,7 +340,7 @@ const progressValue = ref(65)
               <div class="grid-item">6</div>
             </OtGrid>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Responsive Grid</h3>
             <OtGrid :cols="{ xs: 1, sm: 2, md: 3, lg: 4 }" :gap="16">
@@ -342,11 +360,13 @@ const progressValue = ref(65)
               <OtButton @click="modalOpen = true">Open Modal</OtButton>
             </div>
           </section>
-          
+
           <OtModal :is-open="modalOpen" @close="modalOpen = false">
-            <h2 style="margin-bottom: 16px; color: var(--ot-gray-200);">Modal Title</h2>
-            <p style="color: var(--ot-gray-200);">This is a modal content. You can put any content here.</p>
-            <div style="margin-top: 24px; display: flex; gap: 8px;">
+            <h2 style="margin-bottom: 16px; color: var(--ot-gray-200)">Modal Title</h2>
+            <p style="color: var(--ot-gray-200)">
+              This is a modal content. You can put any content here.
+            </p>
+            <div style="margin-top: 24px; display: flex; gap: 8px">
               <OtButton variant="secondary" @click="modalOpen = false">Cancel</OtButton>
               <OtButton @click="modalOpen = false">Confirm</OtButton>
             </div>
@@ -374,7 +394,7 @@ const progressValue = ref(65)
               <OtCheckbox :model-value="true" disabled label="Disabled checked" />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Indeterminate</h3>
             <div class="preview__col">
@@ -393,7 +413,7 @@ const progressValue = ref(65)
               <OtSwitch disabled label="Disabled" />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Sizes</h3>
             <div class="preview__col">
@@ -408,27 +428,29 @@ const progressValue = ref(65)
         <div v-if="selectedComponent === 'OtCard'" class="preview">
           <section class="preview__section">
             <h3 class="preview__subtitle">Variants</h3>
-            <div class="preview__row" style="gap: 16px;">
-              <OtCard variant="elevated" style="width: 200px;">
-                <h4 style="color: var(--ot-gray-200); margin-bottom: 8px;">Elevated</h4>
-                <p style="color: var(--ot-gray-100); font-size: 14px;">Card with shadow elevation</p>
+            <div class="preview__row" style="gap: 16px">
+              <OtCard variant="elevated" style="width: 200px">
+                <h4 style="color: var(--ot-gray-200); margin-bottom: 8px">Elevated</h4>
+                <p style="color: var(--ot-gray-100); font-size: 14px">Card with shadow elevation</p>
               </OtCard>
-              <OtCard variant="outlined" style="width: 200px;">
-                <h4 style="color: var(--ot-gray-200); margin-bottom: 8px;">Outlined</h4>
-                <p style="color: var(--ot-gray-100); font-size: 14px;">Card with border</p>
+              <OtCard variant="outlined" style="width: 200px">
+                <h4 style="color: var(--ot-gray-200); margin-bottom: 8px">Outlined</h4>
+                <p style="color: var(--ot-gray-100); font-size: 14px">Card with border</p>
               </OtCard>
-              <OtCard variant="filled" style="width: 200px;">
-                <h4 style="color: var(--ot-gray-200); margin-bottom: 8px;">Filled</h4>
-                <p style="color: var(--ot-gray-100); font-size: 14px;">Card with filled background</p>
+              <OtCard variant="filled" style="width: 200px">
+                <h4 style="color: var(--ot-gray-200); margin-bottom: 8px">Filled</h4>
+                <p style="color: var(--ot-gray-100); font-size: 14px">
+                  Card with filled background
+                </p>
               </OtCard>
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Hoverable</h3>
             <div class="preview__row">
-              <OtCard variant="elevated" hoverable style="width: 200px;">
-                <p style="color: var(--ot-gray-200);">Hover over me!</p>
+              <OtCard variant="elevated" hoverable style="width: 200px">
+                <p style="color: var(--ot-gray-200)">Hover over me!</p>
               </OtCard>
             </div>
           </section>
@@ -446,7 +468,7 @@ const progressValue = ref(65)
               <OtBadge variant="danger">Danger</OtBadge>
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Sizes</h3>
             <div class="preview__row">
@@ -455,7 +477,7 @@ const progressValue = ref(65)
               <OtBadge size="lg">Large</OtBadge>
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Dot Badge</h3>
             <div class="preview__row">
@@ -470,7 +492,7 @@ const progressValue = ref(65)
         <div v-if="selectedComponent === 'OtTooltip'" class="preview">
           <section class="preview__section">
             <h3 class="preview__subtitle">Positions</h3>
-            <div class="preview__row" style="gap: 40px;">
+            <div class="preview__row" style="gap: 40px">
               <OtTooltip content="Top tooltip" position="top">
                 <OtButton>Top</OtButton>
               </OtTooltip>
@@ -491,27 +513,27 @@ const progressValue = ref(65)
         <div v-if="selectedComponent === 'OtTabs'" class="preview">
           <section class="preview__section">
             <h3 class="preview__subtitle">Line Variant</h3>
-            <OtTabs variant="line" style="max-width: 500px;">
+            <OtTabs variant="line" style="max-width: 500px">
               <OtTab value="tab1" label="Tab One">
-                <p style="color: var(--ot-gray-200);">Content for Tab One</p>
+                <p style="color: var(--ot-gray-200)">Content for Tab One</p>
               </OtTab>
               <OtTab value="tab2" label="Tab Two">
-                <p style="color: var(--ot-gray-200);">Content for Tab Two</p>
+                <p style="color: var(--ot-gray-200)">Content for Tab Two</p>
               </OtTab>
               <OtTab value="tab3" label="Tab Three">
-                <p style="color: var(--ot-gray-200);">Content for Tab Three</p>
+                <p style="color: var(--ot-gray-200)">Content for Tab Three</p>
               </OtTab>
             </OtTabs>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Pills Variant</h3>
-            <OtTabs variant="pills" style="max-width: 500px;">
+            <OtTabs variant="pills" style="max-width: 500px">
               <OtTab value="tab1" label="Tab One">
-                <p style="color: var(--ot-gray-200);">Content for Tab One</p>
+                <p style="color: var(--ot-gray-200)">Content for Tab One</p>
               </OtTab>
               <OtTab value="tab2" label="Tab Two">
-                <p style="color: var(--ot-gray-200);">Content for Tab Two</p>
+                <p style="color: var(--ot-gray-200)">Content for Tab Two</p>
               </OtTab>
             </OtTabs>
           </section>
@@ -521,26 +543,26 @@ const progressValue = ref(65)
         <div v-if="selectedComponent === 'OtProgress'" class="preview">
           <section class="preview__section">
             <h3 class="preview__subtitle">Variants</h3>
-            <div class="preview__col" style="max-width: 400px; gap: 24px;">
+            <div class="preview__col" style="max-width: 400px; gap: 24px">
               <OtProgress :value="65" variant="primary" show-label />
               <OtProgress :value="80" variant="success" show-label />
               <OtProgress :value="45" variant="warning" show-label />
               <OtProgress :value="30" variant="danger" show-label />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Sizes</h3>
-            <div class="preview__col" style="max-width: 400px; gap: 24px;">
+            <div class="preview__col" style="max-width: 400px; gap: 24px">
               <OtProgress :value="70" size="sm" />
               <OtProgress :value="70" size="md" />
               <OtProgress :value="70" size="lg" />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Striped & Animated</h3>
-            <div class="preview__col" style="max-width: 400px; gap: 24px;">
+            <div class="preview__col" style="max-width: 400px; gap: 24px">
               <OtProgress :value="60" striped />
               <OtProgress :value="75" striped animated />
             </div>
@@ -551,7 +573,7 @@ const progressValue = ref(65)
         <div v-if="selectedComponent === 'OtAlert'" class="preview">
           <section class="preview__section">
             <h3 class="preview__subtitle">Variants</h3>
-            <div class="preview__col" style="max-width: 600px; gap: 16px;">
+            <div class="preview__col" style="max-width: 600px; gap: 16px">
               <OtAlert variant="info" title="Information">
                 This is an informational alert message.
               </OtAlert>
@@ -566,13 +588,11 @@ const progressValue = ref(65)
               </OtAlert>
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Dismissible</h3>
-            <div class="preview__col" style="max-width: 600px;">
-              <OtAlert variant="info" dismissible>
-                This alert can be dismissed.
-              </OtAlert>
+            <div class="preview__col" style="max-width: 600px">
+              <OtAlert variant="info" dismissible> This alert can be dismissed. </OtAlert>
             </div>
           </section>
         </div>
@@ -589,7 +609,7 @@ const progressValue = ref(65)
               <OtTag variant="danger">Danger</OtTag>
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Sizes</h3>
             <div class="preview__row">
@@ -598,7 +618,7 @@ const progressValue = ref(65)
               <OtTag size="lg">Large</OtTag>
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Removable</h3>
             <div class="preview__row">
@@ -612,30 +632,30 @@ const progressValue = ref(65)
         <div v-if="selectedComponent === 'OtSkeleton'" class="preview">
           <section class="preview__section">
             <h3 class="preview__subtitle">Variants</h3>
-            <div class="preview__row" style="gap: 24px;">
+            <div class="preview__row" style="gap: 24px">
               <OtSkeleton variant="text" width="200px" />
               <OtSkeleton variant="circular" :width="60" :height="60" />
               <OtSkeleton variant="rectangular" :width="200" :height="100" />
               <OtSkeleton variant="rounded" :width="200" :height="100" />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Animations</h3>
-            <div class="preview__col" style="max-width: 300px; gap: 16px;">
+            <div class="preview__col" style="max-width: 300px; gap: 16px">
               <OtSkeleton variant="text" animation="pulse" />
               <OtSkeleton variant="text" animation="wave" />
               <OtSkeleton variant="text" animation="none" />
             </div>
           </section>
-          
+
           <section class="preview__section">
             <h3 class="preview__subtitle">Card Loading</h3>
-            <OtCard style="width: 300px;">
-              <div style="display: flex; gap: 16px; align-items: center;">
+            <OtCard style="width: 300px">
+              <div style="display: flex; gap: 16px; align-items: center">
                 <OtSkeleton variant="circular" :width="40" :height="40" />
-                <div style="flex: 1;">
-                  <OtSkeleton variant="text" width="80%" height="16" style="margin-bottom: 8px;" />
+                <div style="flex: 1">
+                  <OtSkeleton variant="text" width="80%" height="16" style="margin-bottom: 8px" />
                   <OtSkeleton variant="text" width="60%" height="12" />
                 </div>
               </div>

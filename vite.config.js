@@ -10,33 +10,33 @@ export default defineConfig(({ mode }) => {
         lib: {
           entry: resolve(__dirname, 'src/index.js'),
           name: 'OtakuturksUI',
-          fileName: 'otakuturks-ui',
+          fileName: 'otakuturks-ui'
         },
         rollupOptions: {
           external: ['vue'],
           output: {
             globals: {
-              vue: 'Vue',
-            },
-          },
-        },
-      },
+              vue: 'Vue'
+            }
+          }
+        }
+      }
     }
   }
-  
+
   if (mode === 'storybook') {
     return {
       plugins: [vue()],
       root: 'storybook',
       resolve: {
         alias: {
-          './components': resolve(__dirname, 'src/components'),
-        },
-      },
+          './components': resolve(__dirname, 'src/components')
+        }
+      }
     }
   }
-  
+
   return {
-    plugins: [vue()],
+    plugins: [vue()]
   }
 })

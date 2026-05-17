@@ -35,7 +35,7 @@ const isChecked = computed(() => {
 
 const toggle = () => {
   if (props.disabled) return
-  
+
   if (Array.isArray(props.modelValue)) {
     const newValue = [...props.modelValue]
     if (isChecked.value) {

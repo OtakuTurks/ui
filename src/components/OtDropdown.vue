@@ -38,7 +38,7 @@ const highlightedIndex = ref(-1)
 
 const selectedLabel = computed(() => {
   if (!props.modelValue) return props.placeholder
-  const option = props.options.find(opt => 
+  const option = props.options.find((opt) =>
     typeof opt === 'object' ? opt.value === props.modelValue : opt === props.modelValue
   )
   return typeof option === 'object' ? option?.label : option
@@ -125,12 +125,7 @@ onBeforeUnmount(() => {
     ]"
     @keydown="handleKeydown"
   >
-    <button
-      type="button"
-      class="ot-dropdown__trigger"
-      :disabled="disabled"
-      @click="toggleDropdown"
-    >
+    <button type="button" class="ot-dropdown__trigger" :disabled="disabled" @click="toggleDropdown">
       <span class="ot-dropdown__label">{{ selectedLabel }}</span>
       <svg
         class="ot-dropdown__arrow"
@@ -143,7 +138,7 @@ onBeforeUnmount(() => {
         <path d="M7 10l5 5 5-5z" />
       </svg>
     </button>
-    
+
     <transition name="ot-dropdown">
       <ul v-if="isOpen" class="ot-dropdown__menu">
         <li
@@ -151,7 +146,8 @@ onBeforeUnmount(() => {
           :key="index"
           class="ot-dropdown__option"
           :class="{
-            'ot-dropdown__option--selected': typeof option === 'object' ? option.value === modelValue : option === modelValue,
+            'ot-dropdown__option--selected':
+              typeof option === 'object' ? option.value === modelValue : option === modelValue,
             'ot-dropdown__option--highlighted': index === highlightedIndex,
             'ot-dropdown__option--disabled': typeof option === 'object' && option.disabled
           }"
@@ -281,7 +277,9 @@ onBeforeUnmount(() => {
 /* Transition */
 .ot-dropdown-enter-active,
 .ot-dropdown-leave-active {
-  transition: opacity var(--ot-transition-fast), transform var(--ot-transition-fast);
+  transition:
+    opacity var(--ot-transition-fast),
+    transform var(--ot-transition-fast);
 }
 
 .ot-dropdown-enter-from,

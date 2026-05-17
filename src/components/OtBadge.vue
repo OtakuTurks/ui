@@ -20,11 +20,7 @@ defineProps({
 <template>
   <span
     class="ot-badge"
-    :class="[
-      `ot-badge--${variant}`,
-      `ot-badge--${size}`,
-      { 'ot-badge--dot': dot }
-    ]"
+    :class="[`ot-badge--${variant}`, `ot-badge--${size}`, { 'ot-badge--dot': dot }]"
   >
     <span v-if="dot" class="ot-badge__dot"></span>
     <slot v-else />
