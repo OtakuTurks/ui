@@ -107,4 +107,36 @@
  * }} OtAccordionItemProps
  */
 
+/**
+ * @typedef {{
+ * size?: 'sm' | 'md' | 'lg' | 'xl';
+ * variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'white';
+ * }} OtSpinnerProps
+ */
+
+/**
+ * @typedef {{
+ * isOpen: boolean;
+ * position?: 'left' | 'right' | 'top' | 'bottom';
+ * size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+ * closeOnOverlay?: boolean;
+ * title?: string;
+ * }} OtDrawerProps
+ */
+
+/**
+ * @typedef {{
+ * currentPage: number;
+ * totalPages: number;
+ * siblingCount?: number;
+ * }} OtPaginationProps
+ */
+
+/**
+ * @typedef {{
+ * to?: string | object;
+ * active?: boolean;
+ * }} OtBreadcrumbItemProps
+ */
+
 export {}
