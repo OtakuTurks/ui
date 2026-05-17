@@ -59,7 +59,7 @@
     "build:storybook": "vite build --mode storybook",
     "preview": "vite preview",
     "prepare": "husky",
-    "prepublishOnly": "npm run build:lib"
+    "prepublishOnly": "yarn build:lib"
   },
   "dependencies": {
     "vue": "^3.5.34"
