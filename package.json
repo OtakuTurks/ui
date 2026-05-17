@@ -18,7 +18,14 @@
     "name": "OtakuTurks",
     "url": "https://github.com/otakuturks"
   },
+  "contributors": [
+    {
+      "name": "ewgsta",
+      "url": "https://ewgsta.me"
+    }
+  ],
   "license": "GPL-3.0",
+  "homepage": "https://otakuturks-ui.web.app",
   "repository": {
     "type": "git",
     "url": "https://github.com/OtakuTurks/ui.git"
@@ -26,7 +33,6 @@
   "bugs": {
     "url": "https://github.com/OtakuTurks/ui/issues"
   },
-  "homepage": "https://otakuturks-ui.web.app",
   "type": "module",
   "main": "./dist/otakuturks-ui.umd.cjs",
   "module": "./dist/otakuturks-ui.js",
@@ -53,7 +59,7 @@
     "build:storybook": "vite build --mode storybook",
     "preview": "vite preview",
     "prepare": "husky",
-    "prepublishOnly": "yarn build:lib"
+    "prepublishOnly": "npm run build:lib"
   },
   "dependencies": {
     "vue": "^3.5.34"
