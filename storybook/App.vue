@@ -19,6 +19,9 @@ import OtProgress from '../src/components/OtProgress.vue'
 import OtAlert from '../src/components/OtAlert.vue'
 import OtTag from '../src/components/OtTag.vue'
 import OtSkeleton from '../src/components/OtSkeleton.vue'
+import OtToast from '../src/components/OtToast.vue'
+import OtAccordion from '../src/components/OtAccordion.vue'
+import OtAccordionItem from '../src/components/OtAccordionItem.vue'
 
 const selectedComponent = ref('OtButton')
 const searchModalOpen = ref(false)
@@ -41,7 +44,9 @@ const components = [
   { name: 'OtProgress', category: 'Feedback', icon: null },
   { name: 'OtBadge', category: 'Data Display', icon: null },
   { name: 'OtTag', category: 'Data Display', icon: null },
-  { name: 'OtSkeleton', category: 'Data Display', icon: null }
+  { name: 'OtSkeleton', category: 'Data Display', icon: null },
+  { name: 'OtAccordion', category: 'Data Display', icon: null },
+  { name: 'OtToast', category: 'Feedback', icon: null }
 ]
 
 const groupedComponents = computed(() => {
@@ -93,6 +98,22 @@ const checkboxModel = ref(false)
 const checkboxArrayModel = ref(['opt1'])
 const switchModel = ref(false)
 const progressValue = ref(65)
+
+const toastVisible = ref(false)
+const toastProps = ref({
+  variant: 'info',
+  title: 'Notification',
+  message: 'This is a toast message!'
+})
+
+const showToast = (variant = 'info') => {
+  toastProps.value = {
+    variant,
+    title: variant.charAt(0).toUpperCase() + variant.slice(1),
+    message: `This is a ${variant} toast message!`
+  }
+  toastVisible.value = true
+}
 </script>
 
 <template>
@@ -660,6 +681,62 @@ const progressValue = ref(65)
                 </div>
               </div>
             </OtCard>
+          </section>
+        </div>
+
+        <!-- OtToast Preview -->
+        <div v-if="selectedComponent === 'OtToast'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Variants</h3>
+            <div class="preview__row">
+              <OtButton variant="primary" @click="showToast('info')">Info Toast</OtButton>
+              <OtButton variant="success" @click="showToast('success')">Success Toast</OtButton>
+              <OtButton variant="warning" @click="showToast('warning')">Warning Toast</OtButton>
+              <OtButton variant="danger" @click="showToast('danger')">Danger Toast</OtButton>
+            </div>
+          </section>
+
+          <!-- Shared Toast Component for the page -->
+          <OtToast
+            v-model:visible="toastVisible"
+            :variant="toastProps.variant"
+            :title="toastProps.title"
+            :message="toastProps.message"
+            :duration="3000"
+          />
+        </div>
+
+        <!-- OtAccordion Preview -->
+        <div v-if="selectedComponent === 'OtAccordion'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Single Item Open</h3>
+            <div class="preview__col" style="max-width: 600px">
+              <OtAccordion>
+                <OtAccordionItem name="1" title="Accordion Item 1">
+                  <p>Content for the first accordion item.</p>
+                </OtAccordionItem>
+                <OtAccordionItem name="2" title="Accordion Item 2">
+                  <p>Content for the second accordion item.</p>
+                </OtAccordionItem>
+                <OtAccordionItem name="3" title="Accordion Item 3">
+                  <p>Content for the third accordion item.</p>
+                </OtAccordionItem>
+              </OtAccordion>
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Multiple Items Open</h3>
+            <div class="preview__col" style="max-width: 600px">
+              <OtAccordion multiple>
+                <OtAccordionItem name="1" title="Accordion Item 1">
+                  <p>Content for the first accordion item.</p>
+                </OtAccordionItem>
+                <OtAccordionItem name="2" title="Accordion Item 2">
+                  <p>Content for the second accordion item.</p>
+                </OtAccordionItem>
+              </OtAccordion>
+            </div>
           </section>
         </div>
       </div>
