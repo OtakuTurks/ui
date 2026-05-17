@@ -19,23 +19,9 @@ const handleSelect = (provider) => {
 <template>
   <div class="preview">
     <section class="preview__section">
-      <h3 class="preview__subtitle">Interactive Video Player Source Selector</h3>
-      <div style="max-width: 800px; margin: 0 auto">
+      <h3 class="preview__subtitle">Standard Source Selector</h3>
+      <div style="max-width: 600px; margin: 0 auto">
         <OtPlayerSelector :providers="providers" :active-id="activeId" @select="handleSelect" />
-
-        <div
-          style="
-            margin-top: 24px;
-            padding: 16px;
-            background: var(--ot-bg-secondary);
-            border-radius: 8.7px;
-            text-align: center;
-            color: var(--ot-white);
-          "
-        >
-          Currently Playing via:
-          <strong>{{ providers.find((p) => p.id === activeId)?.name }}</strong>
-        </div>
       </div>
     </section>
   </div>
