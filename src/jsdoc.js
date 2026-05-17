@@ -139,4 +139,45 @@
  * }} OtBreadcrumbItemProps
  */
 
+/**
+ * @typedef {{
+ * modelValue?: string | number;
+ * placeholder?: string;
+ * disabled?: boolean;
+ * error?: boolean;
+ * fullWidth?: boolean;
+ * rows?: number | string;
+ * autoResize?: boolean;
+ * maxLength?: number;
+ * }} OtTextareaProps
+ */
+
+/**
+ * @typedef {{
+ * modelValue?: number;
+ * min?: number;
+ * max?: number;
+ * step?: number;
+ * disabled?: boolean;
+ * showValue?: boolean;
+ * }} OtSliderProps
+ */
+
+/**
+ * @typedef {{
+ * title: string;
+ * description?: string;
+ * icon?: string | object;
+ * }} OtEmptyStateProps
+ */
+
+/**
+ * @typedef {{
+ * modelValue?: string | number | boolean;
+ * value: string | number | boolean;
+ * label?: string;
+ * disabled?: boolean;
+ * }} OtRadioProps
+ */
+
 export {}
