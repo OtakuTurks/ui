@@ -1,15 +1,30 @@
 {
   "name": "@otakuturks/ui",
-  "private": false,
   "version": "0.1.0",
-  "type": "module",
+  "description": "A modern, dark-themed Vue 3 UI component library built with the Vimox design system",
+  "keywords": [
+    "vue",
+    "vue3",
+    "ui",
+    "components",
+    "dark-theme",
+    "design-system",
+    "otakuturks"
+  ],
+  "author": {
+    "name": "OtakuTurks",
+    "url": "https://github.com/otakuturks"
+  },
+  "license": "GPL-3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/OtakuTurks/ui.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "bugs": {
+    "url": "https://github.com/OtakuTurks/ui/issues"
   },
+  "homepage": "https://otakuturks.github.io/ui/",
+  "type": "module",
   "main": "./dist/otakuturks-ui.umd.cjs",
   "module": "./dist/otakuturks-ui.js",
   "exports": {
@@ -20,7 +35,12 @@
     "./style.css": "./dist/style.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css"
   ],
   "scripts": {
     "dev": "vite",
@@ -29,7 +49,8 @@
     "build:lib": "vite build --mode lib",
     "build:storybook": "vite build --mode storybook",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "prepublishOnly": "yarn build:lib"
   },
   "dependencies": {
     "vue": "^3.5.34"
@@ -45,5 +66,8 @@
   },
   "peerDependencies": {
     "vue": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
