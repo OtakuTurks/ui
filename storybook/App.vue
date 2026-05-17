@@ -22,6 +22,11 @@ import OtSkeleton from '../src/components/OtSkeleton.vue'
 import OtToastContainer from '../src/components/OtToastContainer.vue'
 import OtAccordion from '../src/components/OtAccordion.vue'
 import OtAccordionItem from '../src/components/OtAccordionItem.vue'
+import OtSpinner from '../src/components/OtSpinner.vue'
+import OtDrawer from '../src/components/OtDrawer.vue'
+import OtPagination from '../src/components/OtPagination.vue'
+import OtBreadcrumb from '../src/components/OtBreadcrumb.vue'
+import OtBreadcrumbItem from '../src/components/OtBreadcrumbItem.vue'
 import { useToast } from '../src/composables/useToast'
 
 const selectedComponent = ref('OtButton')
@@ -47,7 +52,11 @@ const components = [
   { name: 'OtTag', category: 'Data Display', icon: null },
   { name: 'OtSkeleton', category: 'Data Display', icon: null },
   { name: 'OtAccordion', category: 'Data Display', icon: null },
-  { name: 'OtToast', category: 'Feedback', icon: null }
+  { name: 'OtToast', category: 'Feedback', icon: null },
+  { name: 'OtSpinner', category: 'Feedback', icon: null },
+  { name: 'OtDrawer', category: 'Overlays', icon: null },
+  { name: 'OtPagination', category: 'Navigation', icon: null },
+  { name: 'OtBreadcrumb', category: 'Navigation', icon: null }
 ]
 
 const groupedComponents = computed(() => {
@@ -110,6 +119,15 @@ const triggerToast = (variant = 'info') => {
   else if (variant === 'warning') toast.warning(message, { title })
   else if (variant === 'danger') toast.error(message, { title })
   else toast.info(message, { title })
+}
+
+const drawerOpen = ref(false)
+const drawerPosition = ref('right')
+const currentPage = ref(1)
+
+const openDrawer = (pos) => {
+  drawerPosition.value = pos
+  drawerOpen.value = true
 }
 </script>
 
@@ -724,6 +742,106 @@ const triggerToast = (variant = 'info') => {
                   <p>Content for the second accordion item.</p>
                 </OtAccordionItem>
               </OtAccordion>
+            </div>
+          </section>
+        </div>
+
+        <!-- OtSpinner Preview -->
+        <div v-if="selectedComponent === 'OtSpinner'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Variants</h3>
+            <div
+              class="preview__row"
+              style="background: var(--ot-gray-400); padding: 16px; border-radius: 8px"
+            >
+              <OtSpinner variant="primary" />
+              <OtSpinner variant="success" />
+              <OtSpinner variant="warning" />
+              <OtSpinner variant="danger" />
+              <OtSpinner variant="white" />
+              <OtSpinner variant="secondary" />
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Sizes</h3>
+            <div class="preview__row">
+              <OtSpinner size="sm" />
+              <OtSpinner size="md" />
+              <OtSpinner size="lg" />
+              <OtSpinner size="xl" />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtDrawer Preview -->
+        <div v-if="selectedComponent === 'OtDrawer'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Positions</h3>
+            <div class="preview__row">
+              <OtButton @click="openDrawer('left')">Left Drawer</OtButton>
+              <OtButton @click="openDrawer('right')">Right Drawer</OtButton>
+              <OtButton @click="openDrawer('top')">Top Drawer</OtButton>
+              <OtButton @click="openDrawer('bottom')">Bottom Drawer</OtButton>
+            </div>
+          </section>
+
+          <OtDrawer
+            :is-open="drawerOpen"
+            :position="drawerPosition"
+            :title="`${drawerPosition.charAt(0).toUpperCase() + drawerPosition.slice(1)} Drawer`"
+            @close="drawerOpen = false"
+          >
+            <p style="color: var(--ot-gray-200)">
+              This is the drawer content. It slides in smoothly from the selected edge.
+            </p>
+
+            <template #footer>
+              <div style="display: flex; gap: 8px; justify-content: flex-end">
+                <OtButton variant="secondary" @click="drawerOpen = false">Cancel</OtButton>
+                <OtButton @click="drawerOpen = false">Confirm</OtButton>
+              </div>
+            </template>
+          </OtDrawer>
+        </div>
+
+        <!-- OtPagination Preview -->
+        <div v-if="selectedComponent === 'OtPagination'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Basic Pagination</h3>
+            <div class="preview__row">
+              <OtPagination v-model:currentPage="currentPage" :total-pages="10" />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtBreadcrumb Preview -->
+        <div v-if="selectedComponent === 'OtBreadcrumb'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Default</h3>
+            <div class="preview__row">
+              <OtBreadcrumb>
+                <OtBreadcrumbItem to="#">Home</OtBreadcrumbItem>
+                <OtBreadcrumbItem to="#">Components</OtBreadcrumbItem>
+                <OtBreadcrumbItem active>Breadcrumb</OtBreadcrumbItem>
+              </OtBreadcrumb>
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Custom Separator</h3>
+            <div class="preview__row">
+              <OtBreadcrumb>
+                <OtBreadcrumbItem to="#">
+                  Users
+                  <template #separator>/</template>
+                </OtBreadcrumbItem>
+                <OtBreadcrumbItem to="#">
+                  John Doe
+                  <template #separator>/</template>
+                </OtBreadcrumbItem>
+                <OtBreadcrumbItem active>Settings</OtBreadcrumbItem>
+              </OtBreadcrumb>
             </div>
           </section>
         </div>
