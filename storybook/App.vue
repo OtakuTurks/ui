@@ -50,6 +50,12 @@ import OtTerminal from '../src/components/OtTerminal.vue'
 import OtMarquee from '../src/components/OtMarquee.vue'
 import OtTagInput from '../src/components/OtTagInput.vue'
 import OtBackToTop from '../src/components/OtBackToTop.vue'
+import OtAuthCard from '../src/components/OtAuthCard.vue'
+import OtSocialButton from '../src/components/OtSocialButton.vue'
+import OtPasswordStrength from '../src/components/OtPasswordStrength.vue'
+import OtAnimeCard from '../src/components/OtAnimeCard.vue'
+import OtEpisodeCard from '../src/components/OtEpisodeCard.vue'
+import OtScoreDisplay from '../src/components/OtScoreDisplay.vue'
 import { useToast } from '../src/composables/useToast'
 
 const selectedComponent = ref('OtButton')
@@ -100,7 +106,13 @@ const components = [
   { name: 'OtTerminal', category: 'Data Display', icon: null },
   { name: 'OtMarquee', category: 'Layout', icon: null },
   { name: 'OtTagInput', category: 'Form', icon: null },
-  { name: 'OtBackToTop', category: 'Navigation', icon: null }
+  { name: 'OtBackToTop', category: 'Navigation', icon: null },
+  { name: 'OtAuthCard', category: 'Auth', icon: null },
+  { name: 'OtSocialButton', category: 'Auth', icon: null },
+  { name: 'OtPasswordStrength', category: 'Auth', icon: null },
+  { name: 'OtAnimeCard', category: 'Media', icon: null },
+  { name: 'OtEpisodeCard', category: 'Media', icon: null },
+  { name: 'OtScoreDisplay', category: 'Data Display', icon: null }
 ]
 
 const groupedComponents = computed(() => {
@@ -173,6 +185,84 @@ const sliderModel = ref(50)
 const radioModel = ref('opt1')
 const otpModel = ref('')
 const tagInputModel = ref(['anime', 'manga', 'community'])
+const authPasswordModel = ref('')
+
+const animeCardData = [
+  {
+    title: 'One Piece',
+    cover: 'https://cdn.myanimelist.net/images/anime/1244/138851.jpg',
+    score: 8.7,
+    genres: ['Action', 'Adventure', 'Fantasy'],
+    type: 'TV',
+    status: 'airing',
+    year: 1999,
+    episodes: '1100+'
+  },
+  {
+    title: 'Attack on Titan',
+    cover: 'https://cdn.myanimelist.net/images/anime/10/47347.jpg',
+    score: 8.5,
+    genres: ['Action', 'Drama', 'Fantasy'],
+    type: 'TV',
+    status: 'completed',
+    year: 2013,
+    episodes: 87
+  },
+  {
+    title: 'Jujutsu Kaisen',
+    cover: 'https://cdn.myanimelist.net/images/anime/1171/109222.jpg',
+    score: 8.6,
+    genres: ['Action', 'Fantasy'],
+    type: 'TV',
+    status: 'airing',
+    year: 2020,
+    episodes: 48
+  },
+  {
+    title: 'Demon Slayer',
+    cover: 'https://cdn.myanimelist.net/images/anime/1286/99889.jpg',
+    score: 8.5,
+    genres: ['Action', 'Fantasy'],
+    type: 'TV',
+    status: 'airing',
+    year: 2019,
+    episodes: 44
+  }
+]
+
+const episodeData = [
+  {
+    number: 'EP 1',
+    title: 'The Day I Became a Shinigami',
+    thumbnail: 'https://cdn.myanimelist.net/images/anime/10/47347.jpg',
+    duration: '23:40',
+    watched: true,
+    progress: 100
+  },
+  {
+    number: 'EP 2',
+    title: "The Shinigami's Work",
+    thumbnail: 'https://cdn.myanimelist.net/images/anime/1171/109222.jpg',
+    duration: '24:10',
+    watched: true,
+    progress: 100
+  },
+  {
+    number: 'EP 3',
+    title: "The Older Brother's Wish",
+    thumbnail: 'https://cdn.myanimelist.net/images/anime/1286/99889.jpg',
+    duration: '23:55',
+    current: true,
+    progress: 65
+  },
+  {
+    number: 'EP 4',
+    title: 'Cursed Sphere',
+    thumbnail: 'https://cdn.myanimelist.net/images/anime/1244/138851.jpg',
+    duration: '24:00',
+    filler: true
+  }
+]
 
 const avatarGroupData = [
   { src: 'https://i.pravatar.cc/150?img=11', name: 'Zoro Roronoa', color: 'success' },
@@ -1479,6 +1569,112 @@ const openDrawer = (pos) => {
             </div>
             <!-- Main active trigger instance -->
             <OtBackToTop :visibility-height="100" />
+          </section>
+        </div>
+
+        <!-- OtAuthCard Preview -->
+        <div v-if="selectedComponent === 'OtAuthCard'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Login Form</h3>
+            <div class="preview__row" style="justify-content: center">
+              <OtAuthCard title="Welcome Back" sub-title="Sign in to your OtakuTurks account">
+                <template #social>
+                  <OtSocialButton provider="google" />
+                  <OtSocialButton provider="discord" />
+                  <OtSocialButton provider="github" />
+                </template>
+
+                <OtInput type="email" placeholder="Email address" full-width />
+                <OtInput type="password" placeholder="Password" full-width />
+                <OtButton variant="primary" full-width>Sign In</OtButton>
+
+                <template #footer> Don't have an account? <a href="#">Sign Up</a> </template>
+              </OtAuthCard>
+            </div>
+          </section>
+        </div>
+
+        <!-- OtSocialButton Preview -->
+        <div v-if="selectedComponent === 'OtSocialButton'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">All Providers</h3>
+            <div class="preview__col" style="max-width: 360px; margin: 0 auto; gap: 8px">
+              <OtSocialButton provider="google" />
+              <OtSocialButton provider="discord" />
+              <OtSocialButton provider="github" />
+              <OtSocialButton provider="twitter" />
+              <OtSocialButton provider="apple" />
+              <OtSocialButton provider="facebook" />
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">States</h3>
+            <div class="preview__col" style="max-width: 360px; margin: 0 auto; gap: 8px">
+              <OtSocialButton provider="google" loading />
+              <OtSocialButton provider="discord" disabled />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtPasswordStrength Preview -->
+        <div v-if="selectedComponent === 'OtPasswordStrength'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Interactive Demo</h3>
+            <div class="preview__col" style="max-width: 400px; margin: 0 auto">
+              <OtInput
+                v-model="authPasswordModel"
+                type="password"
+                placeholder="Type a password..."
+                full-width
+              />
+              <OtPasswordStrength :password="authPasswordModel" />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtAnimeCard Preview -->
+        <div v-if="selectedComponent === 'OtAnimeCard'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Anime Grid</h3>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px">
+              <OtAnimeCard v-for="(anime, i) in animeCardData" :key="i" v-bind="anime" />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtEpisodeCard Preview -->
+        <div v-if="selectedComponent === 'OtEpisodeCard'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Episode Listing</h3>
+            <div class="preview__col" style="gap: 8px">
+              <OtEpisodeCard v-for="(ep, i) in episodeData" :key="i" v-bind="ep" />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtScoreDisplay Preview -->
+        <div v-if="selectedComponent === 'OtScoreDisplay'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Score Tiers</h3>
+            <div class="preview__row" style="gap: 32px; justify-content: center">
+              <OtScoreDisplay :score="9.2" />
+              <OtScoreDisplay :score="7.8" />
+              <OtScoreDisplay :score="5.5" />
+              <OtScoreDisplay :score="3.2" />
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Custom Sizes</h3>
+            <div
+              class="preview__row"
+              style="gap: 32px; justify-content: center; align-items: flex-end"
+            >
+              <OtScoreDisplay :score="8.5" :size="60" :stroke-width="4" />
+              <OtScoreDisplay :score="8.5" :size="100" :stroke-width="8" />
+              <OtScoreDisplay :score="8.5" :size="120" :stroke-width="10" />
+            </div>
           </section>
         </div>
       </div>
