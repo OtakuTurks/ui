@@ -1,6 +1,13 @@
 name = "otakuturks-ui"
-compatibility_date = "2024-01-01"
-pages_build_output_dir = "storybook/dist"
+compatibility_date = "2024-05-01"
+
+[site]
+bucket = "./storybook/dist"
 
 [build]
 command = "yarn build:storybook"
+path = "storybook/dist"
+
+[build.upload]
+format = "directory"
+dir = "storybook/dist"
