@@ -57,6 +57,15 @@ const handleInput = (event) => {
 const togglePassword = () => {
   showPassword.value = !showPassword.value
 }
+const handleFocus = () => {
+  isFocused.value = true
+  emit('focus')
+}
+
+const handleBlur = () => {
+  isFocused.value = false
+  emit('blur')
+}
 </script>
 
 <template>
@@ -79,14 +88,8 @@ const togglePassword = () => {
       :placeholder="placeholder"
       :disabled="disabled"
       @input="handleInput"
-      @focus="
-        isFocused = true
-        $emit('focus')
-      "
-      @blur="
-        isFocused = false
-        $emit('blur')
-      "
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
 
     <span v-if="adornment" class="ot-input__adornment">
