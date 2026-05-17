@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@otakuturks/ui?style=flat-square&labelColor=343b41&color=377dff)](https://www.npmjs.com/package/@otakuturks/ui)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL_v3-blue?style=flat-square&labelColor=343b41)](https://www.gnu.org/licenses/gpl-3.0)
 ![Vue](https://img.shields.io/badge/Vue.js_3-4FC08D?style=flat-square&logo=vue.js&logoColor=white&labelColor=343b41)
-![JavaScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white&labelColor=343b41)
+![JavaScript](https://img.shields.io/badge/JavaScript-3178C6?style=flat-square&logo=javascript&logoColor=white&labelColor=343b41)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white&labelColor=343b41)
 
 A Vue 3 UI component library.
