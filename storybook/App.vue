@@ -46,6 +46,10 @@ import OtCopyButton from '../src/components/OtCopyButton.vue'
 import OtAvatarGroup from '../src/components/OtAvatarGroup.vue'
 import OtResult from '../src/components/OtResult.vue'
 import OtGlassCard from '../src/components/OtGlassCard.vue'
+import OtTerminal from '../src/components/OtTerminal.vue'
+import OtMarquee from '../src/components/OtMarquee.vue'
+import OtTagInput from '../src/components/OtTagInput.vue'
+import OtBackToTop from '../src/components/OtBackToTop.vue'
 import { useToast } from '../src/composables/useToast'
 
 const selectedComponent = ref('OtButton')
@@ -92,7 +96,11 @@ const components = [
   { name: 'OtCopyButton', category: 'Form', icon: null },
   { name: 'OtAvatarGroup', category: 'Media', icon: null },
   { name: 'OtResult', category: 'Feedback', icon: null },
-  { name: 'OtGlassCard', category: 'Layout', icon: null }
+  { name: 'OtGlassCard', category: 'Layout', icon: null },
+  { name: 'OtTerminal', category: 'Data Display', icon: null },
+  { name: 'OtMarquee', category: 'Layout', icon: null },
+  { name: 'OtTagInput', category: 'Form', icon: null },
+  { name: 'OtBackToTop', category: 'Navigation', icon: null }
 ]
 
 const groupedComponents = computed(() => {
@@ -164,6 +172,8 @@ const textareaModel = ref('')
 const sliderModel = ref(50)
 const radioModel = ref('opt1')
 const otpModel = ref('')
+const tagInputModel = ref(['anime', 'manga', 'community'])
+
 const avatarGroupData = [
   { src: 'https://i.pravatar.cc/150?img=11', name: 'Zoro Roronoa', color: 'success' },
   { src: 'https://i.pravatar.cc/150?img=12', name: 'Luffy Monkey D.', color: 'primary' },
@@ -1235,6 +1245,240 @@ const openDrawer = (pos) => {
                 </div>
               </OtGlassCard>
             </div>
+          </section>
+        </div>
+
+        <!-- OtTerminal Preview -->
+        <div v-if="selectedComponent === 'OtTerminal'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Interactive Bash Simulator</h3>
+            <div class="preview__col">
+              <OtTerminal
+                title="zoro@otakuturks ~ dev"
+                copy-text="git commit -m 'feat: add terminal component'"
+                height="320px"
+              >
+                <p>
+                  <span class="prompt">zoro@otakuturks ~</span>
+                  <span class="command">git status</span>
+                </p>
+                <p class="comment"># On branch main</p>
+                <p class="comment"># Your branch is up to date with 'origin/main'.</p>
+                <p class="comment"># Untracked files:</p>
+                <p class="comment">
+                  # (use "git add &lt;file&gt;..." to include in what will be committed)
+                </p>
+                <p class="error"># src/components/OtTerminal.vue</p>
+                <br />
+                <p>
+                  <span class="prompt">zoro@otakuturks ~</span>
+                  <span class="command"
+                    >git add . && git commit -m 'feat: add terminal component'</span
+                  >
+                </p>
+                <p class="success">[main bd532f1] feat: add terminal component</p>
+                <p class="success">1 file changed, 114 insertions(+)</p>
+                <p class="success">create mode 100644 src/components/OtTerminal.vue</p>
+              </OtTerminal>
+            </div>
+          </section>
+        </div>
+
+        <!-- OtMarquee Preview -->
+        <div v-if="selectedComponent === 'OtMarquee'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Horizontal Infinite Loop Slider</h3>
+            <div class="preview__col" style="gap: 24px">
+              <div>
+                <p style="margin-bottom: 8px; color: var(--ot-gray-100)">
+                  Default (Left, Speed 20s, Pause on Hover)
+                </p>
+                <OtMarquee :speed="15">
+                  <span
+                    style="
+                      font-size: 18px;
+                      font-weight: bold;
+                      color: var(--ot-primary);
+                      padding: 0 20px;
+                    "
+                    >🔥 One Piece</span
+                  >
+                  <span
+                    style="
+                      font-size: 18px;
+                      font-weight: bold;
+                      color: var(--ot-success);
+                      padding: 0 20px;
+                    "
+                    >⚡ Naruto</span
+                  >
+                  <span
+                    style="
+                      font-size: 18px;
+                      font-weight: bold;
+                      color: var(--ot-danger);
+                      padding: 0 20px;
+                    "
+                    >👑 Attack on Titan</span
+                  >
+                  <span
+                    style="
+                      font-size: 18px;
+                      font-weight: bold;
+                      color: var(--ot-warning);
+                      padding: 0 20px;
+                    "
+                    >⚔️ Bleach</span
+                  >
+                  <span
+                    style="
+                      font-size: 18px;
+                      font-weight: bold;
+                      color: var(--ot-primary);
+                      padding: 0 20px;
+                    "
+                    >🌌 Demon Slayer</span
+                  >
+                </OtMarquee>
+              </div>
+
+              <div>
+                <p style="margin-bottom: 8px; color: var(--ot-gray-100)">
+                  Reverse Direction (Right, Speed 10s)
+                </p>
+                <OtMarquee direction="right" :speed="10">
+                  <span
+                    style="
+                      font-size: 18px;
+                      font-weight: bold;
+                      color: var(--ot-danger);
+                      padding: 0 20px;
+                    "
+                    >🔥 Jujutsu Kaisen</span
+                  >
+                  <span
+                    style="
+                      font-size: 18px;
+                      font-weight: bold;
+                      color: var(--ot-warning);
+                      padding: 0 20px;
+                    "
+                    >⚡ Hunter x Hunter</span
+                  >
+                  <span
+                    style="
+                      font-size: 18px;
+                      font-weight: bold;
+                      color: var(--ot-success);
+                      padding: 0 20px;
+                    "
+                    >👑 Death Note</span
+                  >
+                  <span
+                    style="
+                      font-size: 18px;
+                      font-weight: bold;
+                      color: var(--ot-primary);
+                      padding: 0 20px;
+                    "
+                    >⚔️ Chainsaw Man</span
+                  >
+                </OtMarquee>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- OtTagInput Preview -->
+        <div v-if="selectedComponent === 'OtTagInput'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Interactive Tag Staging</h3>
+            <div class="preview__col">
+              <OtTagInput v-model="tagInputModel" placeholder="Type tag and press Enter..." />
+              <div style="font-size: 14px; color: var(--ot-gray-100); margin-top: 8px">
+                Staged Tags: <strong style="color: var(--ot-primary)">{{ tagInputModel }}</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Disabled Tag Input</h3>
+            <div class="preview__col">
+              <OtTagInput :model-value="['readonly', 'locked']" disabled />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtBackToTop Preview -->
+        <div v-if="selectedComponent === 'OtBackToTop'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Scroll Progress Indicator</h3>
+            <div
+              class="preview__col"
+              style="align-items: center; justify-content: center; min-height: 200px"
+            >
+              <p
+                style="
+                  color: var(--ot-gray-100);
+                  max-width: 420px;
+                  text-align: center;
+                  margin-bottom: 24px;
+                "
+              >
+                Scroll down this page to see the floating back-to-top button appear in the
+                bottom-right corner! It contains a circular progress ring synced with your scroll
+                position.
+              </p>
+              <!-- Static mock presentation of the button -->
+              <div
+                style="
+                  position: relative;
+                  width: 64px;
+                  height: 64px;
+                  border-radius: 50%;
+                  background: var(--ot-bg-secondary);
+                  border: 1px solid var(--ot-gray-300);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  box-shadow: var(--ot-shadow-lg);
+                "
+              >
+                <svg
+                  style="
+                    position: absolute;
+                    inset: 0;
+                    width: 100%;
+                    height: 100%;
+                    transform: rotate(-90deg);
+                  "
+                  viewBox="0 0 48 48"
+                >
+                  <circle
+                    cx="24"
+                    cy="24"
+                    r="20"
+                    stroke="rgba(255, 255, 255, 0.08)"
+                    stroke-width="3.5"
+                    fill="none"
+                  />
+                  <circle
+                    cx="24"
+                    cy="24"
+                    r="20"
+                    stroke="var(--ot-primary)"
+                    stroke-width="3.5"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-dasharray="125.66"
+                    stroke-dashoffset="37.7"
+                  />
+                </svg>
+                <span style="color: var(--ot-white); font-weight: bold; font-size: 12px">70%</span>
+              </div>
+            </div>
+            <!-- Main active trigger instance -->
+            <OtBackToTop :visibility-height="100" />
           </section>
         </div>
       </div>
