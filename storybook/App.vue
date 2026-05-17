@@ -19,9 +19,10 @@ import OtProgress from '../src/components/OtProgress.vue'
 import OtAlert from '../src/components/OtAlert.vue'
 import OtTag from '../src/components/OtTag.vue'
 import OtSkeleton from '../src/components/OtSkeleton.vue'
-import OtToast from '../src/components/OtToast.vue'
+import OtToastContainer from '../src/components/OtToastContainer.vue'
 import OtAccordion from '../src/components/OtAccordion.vue'
 import OtAccordionItem from '../src/components/OtAccordionItem.vue'
+import { useToast } from '../src/composables/useToast'
 
 const selectedComponent = ref('OtButton')
 const searchModalOpen = ref(false)
@@ -99,20 +100,16 @@ const checkboxArrayModel = ref(['opt1'])
 const switchModel = ref(false)
 const progressValue = ref(65)
 
-const toastVisible = ref(false)
-const toastProps = ref({
-  variant: 'info',
-  title: 'Notification',
-  message: 'This is a toast message!'
-})
+const toast = useToast()
 
-const showToast = (variant = 'info') => {
-  toastProps.value = {
-    variant,
-    title: variant.charAt(0).toUpperCase() + variant.slice(1),
-    message: `This is a ${variant} toast message!`
-  }
-  toastVisible.value = true
+const triggerToast = (variant = 'info') => {
+  const title = variant.charAt(0).toUpperCase() + variant.slice(1)
+  const message = `This is a ${variant} toast message that stacks!`
+
+  if (variant === 'success') toast.success(message, { title })
+  else if (variant === 'warning') toast.warning(message, { title })
+  else if (variant === 'danger') toast.error(message, { title })
+  else toast.info(message, { title })
 }
 </script>
 
@@ -687,23 +684,14 @@ const showToast = (variant = 'info') => {
         <!-- OtToast Preview -->
         <div v-if="selectedComponent === 'OtToast'" class="preview">
           <section class="preview__section">
-            <h3 class="preview__subtitle">Variants</h3>
+            <h3 class="preview__subtitle">Variants (Stacked)</h3>
             <div class="preview__row">
-              <OtButton variant="primary" @click="showToast('info')">Info Toast</OtButton>
-              <OtButton variant="success" @click="showToast('success')">Success Toast</OtButton>
-              <OtButton variant="warning" @click="showToast('warning')">Warning Toast</OtButton>
-              <OtButton variant="danger" @click="showToast('danger')">Danger Toast</OtButton>
+              <OtButton variant="primary" @click="triggerToast('info')">Info Toast</OtButton>
+              <OtButton variant="success" @click="triggerToast('success')">Success Toast</OtButton>
+              <OtButton variant="warning" @click="triggerToast('warning')">Warning Toast</OtButton>
+              <OtButton variant="danger" @click="triggerToast('danger')">Danger Toast</OtButton>
             </div>
           </section>
-
-          <!-- Shared Toast Component for the page -->
-          <OtToast
-            v-model:visible="toastVisible"
-            :variant="toastProps.variant"
-            :title="toastProps.title"
-            :message="toastProps.message"
-            :duration="3000"
-          />
         </div>
 
         <!-- OtAccordion Preview -->
@@ -741,6 +729,9 @@ const showToast = (variant = 'info') => {
         </div>
       </div>
     </main>
+
+    <!-- Global Toast Container -->
+    <OtToastContainer />
 
     <!-- Search Modal -->
     <OtSearchModal
