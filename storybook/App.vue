@@ -44,6 +44,8 @@ import OtColorPicker from '../src/components/OtColorPicker.vue'
 import OtOtpInput from '../src/components/OtOtpInput.vue'
 import OtCopyButton from '../src/components/OtCopyButton.vue'
 import OtAvatarGroup from '../src/components/OtAvatarGroup.vue'
+import OtResult from '../src/components/OtResult.vue'
+import OtGlassCard from '../src/components/OtGlassCard.vue'
 import { useToast } from '../src/composables/useToast'
 
 const selectedComponent = ref('OtButton')
@@ -88,7 +90,9 @@ const components = [
   { name: 'OtDivider', category: 'Layout', icon: null },
   { name: 'OtOtpInput', category: 'Form', icon: null },
   { name: 'OtCopyButton', category: 'Form', icon: null },
-  { name: 'OtAvatarGroup', category: 'Media', icon: null }
+  { name: 'OtAvatarGroup', category: 'Media', icon: null },
+  { name: 'OtResult', category: 'Feedback', icon: null },
+  { name: 'OtGlassCard', category: 'Layout', icon: null }
 ]
 
 const groupedComponents = computed(() => {
@@ -1156,6 +1160,80 @@ const openDrawer = (pos) => {
                 </p>
                 <OtAvatarGroup :avatars="avatarGroupData" :max="4" size="xl" spacing="lg" />
               </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- OtResult Preview -->
+        <div v-if="selectedComponent === 'OtResult'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Result States</h3>
+            <div class="preview__row" style="justify-content: space-around; gap: 32px">
+              <OtResult
+                status="success"
+                title="Payment Successful"
+                sub-title="Your Premium Otaku subscription has been activated."
+              />
+              <OtResult
+                status="warning"
+                title="Auth Token Expiring"
+                sub-title="Please re-verify your email address."
+              />
+              <OtResult
+                status="error"
+                title="Submission Failed"
+                sub-title="Please check your form inputs and try again."
+              />
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Errors & Glitches</h3>
+            <div class="preview__row" style="justify-content: space-around; gap: 32px">
+              <OtResult
+                status="404"
+                title="Not Found"
+                sub-title="The page you are looking for has vanished into thin air."
+              />
+              <OtResult
+                status="500"
+                title="Server Melt Down"
+                sub-title="Internal server error. Our gnomes are on it."
+              />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtGlassCard Preview -->
+        <div v-if="selectedComponent === 'OtGlassCard'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Glassmorphism Visuals</h3>
+            <div class="preview__row" style="gap: 32px">
+              <OtGlassCard style="width: 320px" glow-color="#377dff">
+                <h4 style="margin-bottom: 8px">Zoro Roronoa</h4>
+                <p style="font-size: 14px; opacity: 0.8; margin-bottom: 16px">
+                  The legendary swordsman who fights with three swords.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center">
+                  <span style="font-size: 12px; font-weight: bold; color: var(--ot-success)"
+                    >Lvl. 99</span
+                  >
+                  <span style="font-size: 12px; opacity: 0.6">Power: 9200</span>
+                </div>
+              </OtGlassCard>
+
+              <OtGlassCard style="width: 320px" glow-color="#ff715b">
+                <h4 style="margin-bottom: 8px">Monkey D. Luffy</h4>
+                <p style="font-size: 14px; opacity: 0.8; margin-bottom: 16px">
+                  The pirate captain who aims to find the One Piece.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center">
+                  <span style="font-size: 12px; font-weight: bold; color: var(--ot-danger)"
+                    >Lvl. 100</span
+                  >
+                  <span style="font-size: 12px; opacity: 0.6">Power: 9999</span>
+                </div>
+              </OtGlassCard>
             </div>
           </section>
         </div>
