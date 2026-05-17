@@ -34,6 +34,8 @@ const components = [
   { name: 'OtDivider', category: 'Layout', icon: null },
   { name: 'OtGlassCard', category: 'Layout', icon: null },
   { name: 'OtMarquee', category: 'Layout', icon: null },
+  { name: 'OtFooter', category: 'Layout', icon: null },
+  { name: 'OtAdminDashboard', category: 'Layout', icon: null },
   { name: 'OtTabs', category: 'Navigation', icon: null },
   { name: 'OtPagination', category: 'Navigation', icon: null },
   { name: 'OtBreadcrumb', category: 'Navigation', icon: null },
@@ -64,6 +66,7 @@ const components = [
   { name: 'OtPasswordStrength', category: 'Auth', icon: null },
   { name: 'OtSessionManager', category: 'Auth', icon: null },
   { name: 'OtUserProfileCard', category: 'Auth', icon: null },
+  { name: 'OtAuthDashboard', category: 'Auth', icon: null },
   { name: 'OtCommentSection', category: 'Data Display', icon: null },
   { name: 'OtPlayerSelector', category: 'Media', icon: null }
 ]
@@ -118,14 +121,40 @@ onBeforeUnmount(() => {
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar__header">
-        <h1 class="sidebar__brand">
-          <OtAvatar
-            src="https://thumbs2.imgbox.com/f8/9e/ccoQ0QLW_t.jpeg"
-            name="User One"
-            size="md"
-          />
-          OtakuTurks UI
-        </h1>
+        <div class="sidebar__header-top">
+          <h1 class="sidebar__brand">
+            <OtAvatar
+              src="https://thumbs2.imgbox.com/f8/9e/ccoQ0QLW_t.jpeg"
+              name="User One"
+              size="md"
+            />
+            OtakuTurks UI
+          </h1>
+          <div class="sidebar__external-links">
+            <a
+              href="https://github.com/OtakuTurks/ui"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="GitHub Repository"
+              class="sidebar__link-icon"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
         <button class="sidebar__search" @click="searchModalOpen = true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -211,14 +240,43 @@ onBeforeUnmount(() => {
   border-bottom: 1px solid var(--ot-gray-300);
 }
 
+.sidebar__header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ot-spacing-md);
+}
+
 .sidebar__brand {
   font-size: var(--ot-font-lg);
   font-weight: 700;
   color: var(--ot-white);
-  margin: 0 0 var(--ot-spacing-md) 0;
+  margin: 0;
   display: flex;
   align-items: center;
   gap: var(--ot-spacing-sm);
+  white-space: nowrap;
+}
+
+.sidebar__external-links {
+  display: flex;
+  align-items: center;
+  gap: var(--ot-spacing-sm);
+}
+
+.sidebar__link-icon {
+  color: var(--ot-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: var(--ot-radius-sm);
+  transition: all var(--ot-transition-fast);
+}
+
+.sidebar__link-icon:hover {
+  color: var(--ot-white);
+  background-color: var(--ot-gray-400);
 }
 
 .sidebar__search {
