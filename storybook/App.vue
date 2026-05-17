@@ -27,6 +27,10 @@ import OtDrawer from '../src/components/OtDrawer.vue'
 import OtPagination from '../src/components/OtPagination.vue'
 import OtBreadcrumb from '../src/components/OtBreadcrumb.vue'
 import OtBreadcrumbItem from '../src/components/OtBreadcrumbItem.vue'
+import OtTextarea from '../src/components/OtTextarea.vue'
+import OtSlider from '../src/components/OtSlider.vue'
+import OtEmptyState from '../src/components/OtEmptyState.vue'
+import OtRadio from '../src/components/OtRadio.vue'
 import { useToast } from '../src/composables/useToast'
 
 const selectedComponent = ref('OtButton')
@@ -56,7 +60,11 @@ const components = [
   { name: 'OtSpinner', category: 'Feedback', icon: null },
   { name: 'OtDrawer', category: 'Overlays', icon: null },
   { name: 'OtPagination', category: 'Navigation', icon: null },
-  { name: 'OtBreadcrumb', category: 'Navigation', icon: null }
+  { name: 'OtBreadcrumb', category: 'Navigation', icon: null },
+  { name: 'OtTextarea', category: 'Form', icon: null },
+  { name: 'OtSlider', category: 'Form', icon: null },
+  { name: 'OtRadio', category: 'Form', icon: null },
+  { name: 'OtEmptyState', category: 'Data Display', icon: null }
 ]
 
 const groupedComponents = computed(() => {
@@ -124,6 +132,9 @@ const triggerToast = (variant = 'info') => {
 const drawerOpen = ref(false)
 const drawerPosition = ref('right')
 const currentPage = ref(1)
+const textareaModel = ref('')
+const sliderModel = ref(50)
+const radioModel = ref('opt1')
 
 const openDrawer = (pos) => {
   drawerPosition.value = pos
@@ -842,6 +853,71 @@ const openDrawer = (pos) => {
                 </OtBreadcrumbItem>
                 <OtBreadcrumbItem active>Settings</OtBreadcrumbItem>
               </OtBreadcrumb>
+            </div>
+          </section>
+        </div>
+
+        <!-- OtTextarea Preview -->
+        <div v-if="selectedComponent === 'OtTextarea'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Basic Textarea</h3>
+            <div class="preview__col" style="max-width: 400px">
+              <OtTextarea
+                v-model="textareaModel"
+                placeholder="Write your message here..."
+                :maxLength="200"
+              />
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">States</h3>
+            <div class="preview__col" style="max-width: 400px; gap: 16px">
+              <OtTextarea placeholder="Error state" error />
+              <OtTextarea placeholder="Disabled state" disabled />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtSlider Preview -->
+        <div v-if="selectedComponent === 'OtSlider'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Basic Slider</h3>
+            <div class="preview__col" style="max-width: 400px">
+              <OtSlider v-model="sliderModel" show-value />
+              <p style="margin-top: 16px; color: var(--ot-gray-200)">
+                Current Value: {{ sliderModel }}
+              </p>
+            </div>
+          </section>
+        </div>
+
+        <!-- OtRadio Preview -->
+        <div v-if="selectedComponent === 'OtRadio'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Radio Group</h3>
+            <div class="preview__row">
+              <OtRadio v-model="radioModel" value="opt1" label="Option 1" />
+              <OtRadio v-model="radioModel" value="opt2" label="Option 2" />
+              <OtRadio v-model="radioModel" value="opt3" label="Disabled Option" disabled />
+            </div>
+            <p style="margin-top: 16px; color: var(--ot-gray-200)">Selected: {{ radioModel }}</p>
+          </section>
+        </div>
+
+        <!-- OtEmptyState Preview -->
+        <div v-if="selectedComponent === 'OtEmptyState'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Default State</h3>
+            <div class="preview__col">
+              <OtEmptyState
+                title="No projects found"
+                description="Get started by creating a new project. Projects help you organize your tasks and collaborate with your team."
+              >
+                <template #action>
+                  <OtButton variant="primary">Create Project</OtButton>
+                </template>
+              </OtEmptyState>
             </div>
           </section>
         </div>
