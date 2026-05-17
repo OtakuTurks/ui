@@ -1,0 +1,34 @@
+# Source files
+src/
+storybook/
+
+# Development
+.github/
+.husky/
+.vscode/
+
+# Config files
+.gitignore
+.prettierignore
+.prettierrc
+.lintstagedrc
+commitlint.config.js
+vite.config.js
+jsdoc.js
+
+# Tests
+__tests__/
+*.test.js
+*.spec.js
+
+# Documentation
+CHANGELOG.md
+CONTRIBUTING.md
+SECURITY.md
+CODE_OF_CONDUCT.md
+
+# Misc
+*.log
+.DS_Store
+node_modules/
+.firebase/
