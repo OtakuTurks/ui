@@ -41,6 +41,9 @@ import OtListItem from '../src/components/OtListItem.vue'
 import OtTimeline from '../src/components/OtTimeline.vue'
 import OtTimelineItem from '../src/components/OtTimelineItem.vue'
 import OtColorPicker from '../src/components/OtColorPicker.vue'
+import OtOtpInput from '../src/components/OtOtpInput.vue'
+import OtCopyButton from '../src/components/OtCopyButton.vue'
+import OtAvatarGroup from '../src/components/OtAvatarGroup.vue'
 import { useToast } from '../src/composables/useToast'
 
 const selectedComponent = ref('OtButton')
@@ -82,7 +85,10 @@ const components = [
   { name: 'OtList', category: 'Data Display', icon: null },
   { name: 'OtTimeline', category: 'Data Display', icon: null },
   { name: 'OtKbd', category: 'Data Display', icon: null },
-  { name: 'OtDivider', category: 'Layout', icon: null }
+  { name: 'OtDivider', category: 'Layout', icon: null },
+  { name: 'OtOtpInput', category: 'Form', icon: null },
+  { name: 'OtCopyButton', category: 'Form', icon: null },
+  { name: 'OtAvatarGroup', category: 'Media', icon: null }
 ]
 
 const groupedComponents = computed(() => {
@@ -153,6 +159,15 @@ const currentPage = ref(1)
 const textareaModel = ref('')
 const sliderModel = ref(50)
 const radioModel = ref('opt1')
+const otpModel = ref('')
+const avatarGroupData = [
+  { src: 'https://i.pravatar.cc/150?img=11', name: 'Zoro Roronoa', color: 'success' },
+  { src: 'https://i.pravatar.cc/150?img=12', name: 'Luffy Monkey D.', color: 'primary' },
+  { src: 'https://i.pravatar.cc/150?img=13', name: 'Nami Cat Burglar', color: 'warning' },
+  { src: 'https://i.pravatar.cc/150?img=14', name: 'Sanji Vinsmoke', color: 'danger' },
+  { src: 'https://i.pravatar.cc/150?img=15', name: 'Nico Robin', color: 'primary' },
+  { src: 'https://i.pravatar.cc/150?img=16', name: 'Chopper Tony Tony', color: 'success' }
+]
 
 const openDrawer = (pos) => {
   drawerPosition.value = pos
@@ -1049,6 +1064,98 @@ const openDrawer = (pos) => {
             <div class="preview__row">
               <OtColorPicker modelValue="#3b82f6" />
               <OtColorPicker modelValue="#10b981" disabled />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtOtpInput Preview -->
+        <div v-if="selectedComponent === 'OtOtpInput'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Interactive Demo</h3>
+            <div class="preview__col">
+              <OtOtpInput
+                v-model="otpModel"
+                @complete="(code) => console.log('OTP code complete:', code)"
+              />
+              <div style="font-size: 14px; color: var(--ot-gray-100)">
+                Current Value:
+                <strong style="color: var(--ot-primary)">{{ otpModel || 'empty' }}</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Disabled State</h3>
+            <div class="preview__col">
+              <OtOtpInput model-value="123456" disabled />
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Custom Length (4 digits) & Text Mode</h3>
+            <div class="preview__col">
+              <OtOtpInput type="text" :length="4" placeholder="-" />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtCopyButton Preview -->
+        <div v-if="selectedComponent === 'OtCopyButton'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Variants</h3>
+            <div class="preview__row">
+              <OtCopyButton
+                text="npm install @otakuturks/ui"
+                label="Copy Command"
+                copied-label="Copied!"
+              />
+              <OtCopyButton text="Secondary Value" variant="secondary" />
+              <OtCopyButton text="Primary Action" variant="primary" label="Click to Copy" />
+              <OtCopyButton text="Success Variant" variant="success" label="Secure Link" />
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Sizes</h3>
+            <div class="preview__row">
+              <OtCopyButton text="Small Code" size="sm" label="Small" />
+              <OtCopyButton text="Medium Code" size="md" label="Medium" />
+              <OtCopyButton text="Large Code" size="lg" label="Large" />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtAvatarGroup Preview -->
+        <div v-if="selectedComponent === 'OtAvatarGroup'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Default Stacking</h3>
+            <div class="preview__row">
+              <OtAvatarGroup :avatars="avatarGroupData" />
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Custom Max Display Limit</h3>
+            <div class="preview__row">
+              <OtAvatarGroup :avatars="avatarGroupData" :max="3" size="lg" />
+            </div>
+          </section>
+
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Sizes & Spacings</h3>
+            <div class="preview__col">
+              <div>
+                <p style="margin-bottom: 8px; color: var(--ot-gray-100)">
+                  Small Spacing & Small Size
+                </p>
+                <OtAvatarGroup :avatars="avatarGroupData" :max="4" size="sm" spacing="sm" />
+              </div>
+              <div>
+                <p style="margin-bottom: 8px; color: var(--ot-gray-100)">
+                  Large Spacing & Extra Large Size
+                </p>
+                <OtAvatarGroup :avatars="avatarGroupData" :max="4" size="xl" spacing="lg" />
+              </div>
             </div>
           </section>
         </div>
