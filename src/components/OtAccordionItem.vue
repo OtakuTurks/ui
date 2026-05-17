@@ -42,9 +42,11 @@ const toggle = () => {
         </svg>
       </span>
     </button>
-    <div class="ot-accordion-item__body" v-show="isOpen">
-      <div class="ot-accordion-item__content">
-        <slot />
+    <div class="ot-accordion-item__body">
+      <div class="ot-accordion-item__body-inner">
+        <div class="ot-accordion-item__content">
+          <slot />
+        </div>
       </div>
     </div>
   </div>
@@ -86,11 +88,27 @@ const toggle = () => {
 }
 
 .ot-accordion-item__body {
-  border-top: 1px solid var(--ot-gray-300, #4b5563);
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ot-accordion-item--open .ot-accordion-item__body {
+  grid-template-rows: 1fr;
+}
+
+.ot-accordion-item__body-inner {
+  overflow: hidden;
 }
 
 .ot-accordion-item__content {
   padding: var(--ot-spacing-md, 16px);
   color: var(--ot-gray-200, #d1d5db);
+  border-top: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.ot-accordion-item--open .ot-accordion-item__content {
+  border-top-color: var(--ot-gray-300, #4b5563);
 }
 </style>
