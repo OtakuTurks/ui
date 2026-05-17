@@ -54,4 +54,3 @@ export { default as OtCommentSectionPreview } from './OtCommentSectionPreview.vu
 export { default as OtPlayerSelectorPreview } from './OtPlayerSelectorPreview.vue'
 export { default as OtUserProfileCardPreview } from './OtUserProfileCardPreview.vue'
 export { default as OtAuthDashboardPreview } from './OtAuthDashboardPreview.vue'
-export { default as OtAdminDashboardPreview } from './OtAdminDashboardPreview.vue'

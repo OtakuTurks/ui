@@ -34,8 +34,6 @@ const components = [
   { name: 'OtDivider', category: 'Layout', icon: null },
   { name: 'OtGlassCard', category: 'Layout', icon: null },
   { name: 'OtMarquee', category: 'Layout', icon: null },
-  { name: 'OtFooter', category: 'Layout', icon: null },
-  { name: 'OtAdminDashboard', category: 'Layout', icon: null },
   { name: 'OtTabs', category: 'Navigation', icon: null },
   { name: 'OtPagination', category: 'Navigation', icon: null },
   { name: 'OtBreadcrumb', category: 'Navigation', icon: null },
