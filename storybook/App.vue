@@ -31,6 +31,16 @@ import OtTextarea from '../src/components/OtTextarea.vue'
 import OtSlider from '../src/components/OtSlider.vue'
 import OtEmptyState from '../src/components/OtEmptyState.vue'
 import OtRadio from '../src/components/OtRadio.vue'
+import OtDivider from '../src/components/OtDivider.vue'
+import OtKbd from '../src/components/OtKbd.vue'
+import OtRating from '../src/components/OtRating.vue'
+import OtStatistic from '../src/components/OtStatistic.vue'
+import OtFileInput from '../src/components/OtFileInput.vue'
+import OtList from '../src/components/OtList.vue'
+import OtListItem from '../src/components/OtListItem.vue'
+import OtTimeline from '../src/components/OtTimeline.vue'
+import OtTimelineItem from '../src/components/OtTimelineItem.vue'
+import OtColorPicker from '../src/components/OtColorPicker.vue'
 import { useToast } from '../src/composables/useToast'
 
 const selectedComponent = ref('OtButton')
@@ -64,7 +74,15 @@ const components = [
   { name: 'OtTextarea', category: 'Form', icon: null },
   { name: 'OtSlider', category: 'Form', icon: null },
   { name: 'OtRadio', category: 'Form', icon: null },
-  { name: 'OtEmptyState', category: 'Data Display', icon: null }
+  { name: 'OtFileInput', category: 'Form', icon: null },
+  { name: 'OtColorPicker', category: 'Form', icon: null },
+  { name: 'OtEmptyState', category: 'Data Display', icon: null },
+  { name: 'OtRating', category: 'Data Display', icon: null },
+  { name: 'OtStatistic', category: 'Data Display', icon: null },
+  { name: 'OtList', category: 'Data Display', icon: null },
+  { name: 'OtTimeline', category: 'Data Display', icon: null },
+  { name: 'OtKbd', category: 'Data Display', icon: null },
+  { name: 'OtDivider', category: 'Layout', icon: null }
 ]
 
 const groupedComponents = computed(() => {
@@ -918,6 +936,119 @@ const openDrawer = (pos) => {
                   <OtButton variant="primary">Create Project</OtButton>
                 </template>
               </OtEmptyState>
+            </div>
+          </section>
+        </div>
+
+        <!-- OtDivider Preview -->
+        <div v-if="selectedComponent === 'OtDivider'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Horizontal</h3>
+            <p>Content above</p>
+            <OtDivider />
+            <p>Content below</p>
+            <br />
+            <p>Dashed</p>
+            <OtDivider dashed />
+          </section>
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Vertical</h3>
+            <div style="display: flex; align-items: center; height: 50px">
+              <span>Left</span>
+              <OtDivider vertical />
+              <span>Right</span>
+              <OtDivider vertical dashed />
+              <span>Far Right</span>
+            </div>
+          </section>
+        </div>
+
+        <!-- OtKbd Preview -->
+        <div v-if="selectedComponent === 'OtKbd'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Keyboard Shortcuts</h3>
+            <p>Press <OtKbd>Ctrl</OtKbd> + <OtKbd>K</OtKbd> to open search.</p>
+          </section>
+        </div>
+
+        <!-- OtRating Preview -->
+        <div v-if="selectedComponent === 'OtRating'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Interactive</h3>
+            <OtRating :modelValue="3" />
+          </section>
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Readonly</h3>
+            <OtRating :modelValue="4" readonly />
+          </section>
+        </div>
+
+        <!-- OtStatistic Preview -->
+        <div v-if="selectedComponent === 'OtStatistic'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Statistics</h3>
+            <div class="preview__row">
+              <OtStatistic title="Active Users" value="124,592" />
+              <OtStatistic title="Revenue" value="84,200" prefix="$" />
+              <OtStatistic title="Growth" value="12.5" suffix="%" />
+            </div>
+          </section>
+        </div>
+
+        <!-- OtFileInput Preview -->
+        <div v-if="selectedComponent === 'OtFileInput'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">File Upload</h3>
+            <OtFileInput multiple accept="image/*" />
+          </section>
+        </div>
+
+        <!-- OtList Preview -->
+        <div v-if="selectedComponent === 'OtList'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Basic List</h3>
+            <OtList style="max-width: 400px">
+              <OtListItem>
+                <OtAvatar name="Alice" />
+                Alice Freeman
+              </OtListItem>
+              <OtListItem>
+                <OtAvatar name="Bob" />
+                Bob Smith
+              </OtListItem>
+              <OtListItem>
+                <OtAvatar name="Charlie" />
+                Charlie Davis
+              </OtListItem>
+            </OtList>
+          </section>
+        </div>
+
+        <!-- OtTimeline Preview -->
+        <div v-if="selectedComponent === 'OtTimeline'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Activity Timeline</h3>
+            <OtTimeline>
+              <OtTimelineItem title="Account Created" time="2 hours ago" active>
+                User signed up using Google Auth.
+              </OtTimelineItem>
+              <OtTimelineItem title="Profile Updated" time="1 hour ago">
+                Changed avatar and bio.
+              </OtTimelineItem>
+              <OtTimelineItem title="First Post" time="10 mins ago">
+                Published "Hello World".
+              </OtTimelineItem>
+            </OtTimeline>
+          </section>
+        </div>
+
+        <!-- OtColorPicker Preview -->
+        <div v-if="selectedComponent === 'OtColorPicker'" class="preview">
+          <section class="preview__section">
+            <h3 class="preview__subtitle">Color Selection</h3>
+            <div class="preview__row">
+              <OtColorPicker modelValue="#3b82f6" />
+              <OtColorPicker modelValue="#10b981" disabled />
             </div>
           </section>
         </div>
