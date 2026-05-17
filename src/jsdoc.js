@@ -84,4 +84,27 @@
  * }} OtSwitchProps
  */
 
+/**
+ * @typedef {{
+ * message: string;
+ * title?: string;
+ * variant?: 'info' | 'success' | 'warning' | 'danger';
+ * duration?: number;
+ * visible?: boolean;
+ * }} OtToastProps
+ */
+
+/**
+ * @typedef {{
+ * multiple?: boolean;
+ * }} OtAccordionProps
+ */
+
+/**
+ * @typedef {{
+ * name: string | number;
+ * title: string;
+ * }} OtAccordionItemProps
+ */
+
 export {}
