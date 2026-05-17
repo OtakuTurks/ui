@@ -1,105 +1,67 @@
 <script setup>
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const props = defineProps({
   message: { type: String, required: true },
   title: { type: String, default: '' },
   variant: {
     type: String,
-    default: 'info',
-    validator: (value) => ['info', 'success', 'warning', 'danger'].includes(value)
+    default: 'info'
   },
-  duration: { type: Number, default: 3000 },
-  visible: { type: Boolean, default: false }
+  duration: { type: Number, default: 3000 }
 })
 
-const emit = defineEmits(['update:visible', 'close'])
-
-let timer = null
-
-const startTimer = () => {
-  if (props.duration > 0 && props.visible) {
-    timer = setTimeout(() => {
-      emit('update:visible', false)
-      emit('close')
-    }, props.duration)
-  }
-}
-
-const clearTimer = () => {
-  if (timer) {
-    clearTimeout(timer)
-    timer = null
-  }
-}
-
-watch(
-  () => props.visible,
-  (newVal) => {
-    if (newVal) {
-      startTimer()
-    } else {
-      clearTimer()
-    }
-  }
-)
-
-onMounted(() => {
-  if (props.visible) startTimer()
-})
-
-onUnmounted(() => {
-  clearTimer()
-})
+const emit = defineEmits(['close'])
 
 const handleClose = () => {
-  clearTimer()
-  emit('update:visible', false)
   emit('close')
 }
 </script>
 
 <template>
-  <Transition name="ot-toast">
-    <div v-if="visible" class="ot-toast" :class="`ot-toast--${variant}`" role="alert">
+  <div class="ot-toast" :class="`ot-toast--${variant}`" role="alert">
+    <div class="ot-toast__inner">
       <div class="ot-toast__content">
         <strong v-if="title" class="ot-toast__title">{{ title }}</strong>
         <p class="ot-toast__message">{{ message }}</p>
       </div>
-      <button class="ot-toast__close" @click="handleClose" aria-label="Close toast">&times;</button>
+      <button class="ot-toast__close" @click="handleClose" aria-label="Close toast">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+      </button>
     </div>
-  </Transition>
+    <div v-if="duration > 0" class="ot-toast__progress">
+      <div class="ot-toast__progress-bar" :style="{ animationDuration: `${duration}ms` }"></div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
 .ot-toast {
-  position: fixed;
-  bottom: var(--ot-spacing-lg, 24px);
-  right: var(--ot-spacing-lg, 24px);
+  position: relative;
   min-width: 300px;
-  background-color: var(--ot-gray-400, #333);
+  max-width: 400px;
+  background-color: var(--ot-gray-400, #374151);
   color: var(--ot-white, #fff);
   border-radius: var(--ot-radius-base, 8px);
+  box-shadow: var(
+    --ot-shadow-lg,
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05)
+  );
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ot-toast__inner {
   padding: var(--ot-spacing-md, 16px);
-  box-shadow: var(--ot-shadow-lg, 0 10px 15px rgba(0, 0, 0, 0.2));
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  z-index: 9999;
-  border-left: 4px solid transparent;
-}
-
-.ot-toast--info {
-  border-left-color: var(--ot-primary, #3b82f6);
-}
-.ot-toast--success {
-  border-left-color: var(--ot-success, #10b981);
-}
-.ot-toast--warning {
-  border-left-color: var(--ot-warning, #f59e0b);
-}
-.ot-toast--danger {
-  border-left-color: var(--ot-danger, #ef4444);
 }
 
 .ot-toast__content {
@@ -110,36 +72,85 @@ const handleClose = () => {
   display: block;
   font-weight: 600;
   margin-bottom: 4px;
+  font-size: var(--ot-font-sm, 14px);
 }
 
 .ot-toast__message {
   margin: 0;
   font-size: var(--ot-font-sm, 14px);
+  color: var(--ot-gray-100, #9ca3af);
+  line-height: 1.4;
 }
 
 .ot-toast__close {
   background: transparent;
   border: none;
-  color: inherit;
-  font-size: 20px;
-  line-height: 1;
+  color: var(--ot-gray-200, #d1d5db);
   cursor: pointer;
-  opacity: 0.7;
-  padding: 0 0 0 12px;
+  padding: 4px;
+  margin: -4px -4px 0 12px;
+  border-radius: var(--ot-radius-sm, 4px);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ot-toast__close:hover {
-  opacity: 1;
+  background-color: var(--ot-gray-300, #4b5563);
+  color: var(--ot-white, #fff);
 }
 
-.ot-toast-enter-active,
-.ot-toast-leave-active {
-  transition: all 0.3s ease;
+.ot-toast__progress {
+  height: 4px;
+  background-color: var(--ot-gray-400, #374151);
+  width: 100%;
 }
 
-.ot-toast-enter-from,
-.ot-toast-leave-to {
-  opacity: 0;
-  transform: translateY(20px);
+.ot-toast__progress-bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  animation-name: ot-toast-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/* Variant Colors */
+.ot-toast--info .ot-toast__title {
+  color: var(--ot-primary, #3b82f6);
+}
+.ot-toast--info .ot-toast__progress-bar {
+  background-color: var(--ot-primary, #3b82f6);
+}
+
+.ot-toast--success .ot-toast__title {
+  color: var(--ot-success, #10b981);
+}
+.ot-toast--success .ot-toast__progress-bar {
+  background-color: var(--ot-success, #10b981);
+}
+
+.ot-toast--warning .ot-toast__title {
+  color: var(--ot-warning, #f59e0b);
+}
+.ot-toast--warning .ot-toast__progress-bar {
+  background-color: var(--ot-warning, #f59e0b);
+}
+
+.ot-toast--danger .ot-toast__title {
+  color: var(--ot-danger, #ef4444);
+}
+.ot-toast--danger .ot-toast__progress-bar {
+  background-color: var(--ot-danger, #ef4444);
+}
+
+@keyframes ot-toast-progress {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
 }
 </style>
