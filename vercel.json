@@ -1,0 +1,6 @@
+{
+  "name": "otakuturks-ui",
+  "framework": "vite",
+  "buildCommand": "yarn build:storybook",
+  "outputDirectory": "storybook/dist"
+}
