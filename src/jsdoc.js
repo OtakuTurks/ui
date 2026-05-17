@@ -180,4 +180,50 @@
  * }} OtRadioProps
  */
 
+/**
+ * @typedef {{
+ * vertical?: boolean;
+ * dashed?: boolean;
+ * }} OtDividerProps
+ */
+
+/**
+ * @typedef {{
+ * modelValue?: number;
+ * max?: number;
+ * readonly?: boolean;
+ * }} OtRatingProps
+ */
+
+/**
+ * @typedef {{
+ * title: string;
+ * value: string | number;
+ * prefix?: string;
+ * suffix?: string;
+ * }} OtStatisticProps
+ */
+
+/**
+ * @typedef {{
+ * accept?: string;
+ * multiple?: boolean;
+ * }} OtFileInputProps
+ */
+
+/**
+ * @typedef {{
+ * title: string;
+ * time?: string;
+ * active?: boolean;
+ * }} OtTimelineItemProps
+ */
+
+/**
+ * @typedef {{
+ * modelValue?: string;
+ * disabled?: boolean;
+ * }} OtColorPickerProps
+ */
+
 export {}
