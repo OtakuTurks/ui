@@ -1,5 +1,4 @@
 // Icon components for Otakuturks UI
-// SVG icons extracted from Vimox design
 
 export const IconSearch = {
   name: 'IconSearch',
